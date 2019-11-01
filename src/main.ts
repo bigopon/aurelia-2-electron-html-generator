@@ -1,4 +1,5 @@
 import Aurelia from 'aurelia';
+import { dialog } from 'electron';
 import { App } from './app';
 
 declare global {
@@ -10,6 +11,8 @@ declare global {
      */
     path: string;
   }
+
+  const promptSaveFile: typeof dialog.showSaveDialog;
 }
 
 Aurelia

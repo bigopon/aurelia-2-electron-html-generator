@@ -14,3 +14,7 @@
 // })
 
 // window.convertVideo = require('./ffmpeg/video-to-audio');
+const { dialog } = require('electron');
+window.promptSaveFile = function(options) {
+  return dialog.showSaveDialog(options || {});
+}
