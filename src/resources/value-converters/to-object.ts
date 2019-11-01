@@ -4,7 +4,15 @@ import { valueConverter } from "aurelia";
 export class ToObject {
   fromView(val: string): object {
     return typeof val === 'string'
-      ? val === '' ? {} : JSON.parse(val)
+      ? tryParse(val)
       : val;
+  }
+}
+
+function tryParse(val: string) {
+  try {
+    return JSON.parse(val);
+  } catch {
+    return {}
   }
 }
