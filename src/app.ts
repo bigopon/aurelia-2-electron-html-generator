@@ -4,18 +4,18 @@ import { HtmlTemplate } from "./models/template.models";
 import { Aurelia } from "@aurelia/runtime";
 
 const DEFAULT_TEMPLATE =
-  `<template if.bind="description">
-    **Summary:**
-    \${description}
-  </template>
+`<template if.bind="description">
+  **Summary:**
+  \${description}
+</template>
 
-  **Name:** \${name}
-  **Modifiers:** \${modifiers}
+**Name:** \${name}
+**Modifiers:** \${modifiers}
 
-  **Members:** 
-  <template repeat.for="member of members">
-    \${member.text}
-  </template>`;
+**Members:** 
+<template repeat.for="member of members">
+  \${member.text}
+</template>`;
 
 export class App {
   message = 'Hello World!';
@@ -118,10 +118,16 @@ export class App {
     au.start();
 
     this.generatedTemplate = host.innerHTML;
+
+    au.stop();
   }
 
   promptSave(): void {
-    promptSaveFile(this.generatedTemplate, {});
+    const generatedTemplate = this.generatedTemplate;
+    if (!generatedTemplate) {
+      return;
+    }
+    this.download(generatedTemplate);
   }
 
   private getAuInstance(): Aurelia {
@@ -130,52 +136,21 @@ export class App {
     return au;
   }
 
-  onFileListChange(inputEl: HTMLInputElement): void {
-    this.addFile(Array.from(inputEl.files));
-    inputEl.value = '';
-  }
+  private download(content: string): void {
+    const mime_type = "text/plain";
+    const blob = new Blob([content], { type: mime_type });
+    const dlink = document.body.appendChild(document.createElement('a'));
 
-  addFile(files: File | File[]): void {
-    const filesAdded: File[] = [];
-    files = Array.isArray(files) ? files : [files];
-    files.forEach(file => {
-      if (!this.hasFile(file)) {
-        this.files.push(file);
-        filesAdded.push(file);
-      }
-    });
-    if (filesAdded.length > 0) {
-      this.onAddedFiles(filesAdded);
-    }
-  }
+    dlink.download = 'generated_template';
+    dlink.href = window.URL.createObjectURL(blob);
+    dlink.onclick = function(e) {
+      // revokeObjectURL needs a delay to work properly
+      setTimeout(function() {
+          window.URL.revokeObjectURL((e.target as HTMLAnchorElement).href);
+      }, 1500);
+    };
 
-  hasFile(file: File): boolean {
-    return this.files.some($file => areSameFiles($file, file));
-  }
-
-  onAddedFiles(files: File | File[]): void {
-    files = Array.isArray(files) ? files : [files];
-    if (this.selectedFile === null) {
-      this.selectedFile = files[0];
-    }
-  }
-
-  selectedFileChanged(newFile: File): void {
-    if (this.tempFileUrl) {
-      URL.revokeObjectURL(this.tempFileUrl);
-    }
-    if (newFile) {
-      this.tempFileUrl = URL.createObjectURL(newFile);
-    }
-  }
-
-  getFileName(file: File) {
-    return file.name;
-  }
-
-  toMp3(file: File): void {
-    convertVideo(file.path, `${file.name}.mp3`, (...args) => {
-      console.log('done')
-    })
+    dlink.click();
+    dlink.remove();
   }
 }
