@@ -54,7 +54,8 @@
           class="flex-fill p-2 border border-default">
           <monaco-editor
             language="json"
-            value.bind="viewModelObject | toObject"></monaco-editor>
+            default-value.bind="exampleVmValue"
+            value.from-view="viewModelObject | toObject"></monaco-editor>
         </div>
       </div>
     </section>
@@ -64,12 +65,20 @@
       class="h-50 d-flex flex-column"
       style="margin: 0.5rem 0;">
       <header
+        class="d-flex justify-content-between"
         style="padding-top: 0.5rem;">
-        Result viewer
+        <span>
+          Result viewer
+          <button
+            type="button"
+            class="btn btn-sm btn-primary"
+            click.trigger="generateTemplate()">Generate</button>
+        </span>
         <button
           type="button"
-          class="btn btn-sm btn-primary"
-          click.trigger="generateTemplate()">Generate</button>
+          class="btn btn-sm btn-secondary"
+          disabled.bind="!generatedTemplate"
+          click.trigger="promptSave()">Save</button>
       </header>
       <textarea
         class="d-block w-100 h-100 border border-primary p-2"

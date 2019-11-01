@@ -1,5 +1,5 @@
 import Aurelia from 'aurelia';
-import { dialog } from 'electron';
+import { SaveDialogOptions } from 'electron';
 import { App } from './app';
 
 declare global {
@@ -12,7 +12,7 @@ declare global {
     path: string;
   }
 
-  const promptSaveFile: typeof dialog.showSaveDialog;
+  const promptSaveFile: (content: string, options: SaveDialogOptions) => Promise<boolean>;
 }
 
 Aurelia
