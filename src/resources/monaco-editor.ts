@@ -14,6 +14,12 @@ export class MonacoEditor {
   })
   public value: string;
 
+  /**
+   * Default value of an editor instance, used when no value is specified
+   */
+  @bindable()
+  public defaultValue: string;
+
   @bindable()
   public language: string;
 
@@ -60,7 +66,7 @@ export class MonacoEditor {
   private createEditor(): void {
     if (this.validateLanguage()) {
       this.editor = monaco.editor.create(this.el, {
-        value: this.value || '',
+        value: this.value || this.defaultValue || '',
         language: this.language,
         automaticLayout: true,
         minimap: {
