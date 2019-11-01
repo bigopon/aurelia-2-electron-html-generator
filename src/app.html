@@ -61,15 +61,18 @@
     <!-- end editor row -->
     <!-- start result viewer row -->
     <section
-      class="h-50">
-      <header>
+      class="h-50 d-flex flex-column"
+      style="margin: 0.5rem 0;">
+      <header
+        style="padding-top: 0.5rem;">
+        Result viewer
         <button
           type="button"
           class="btn btn-sm btn-primary"
           click.trigger="generateTemplate()">Generate</button>
       </header>
       <textarea
-        class="d-block h-100 w-100 border border-primary p-2 m-t-2"
+        class="d-block w-100 h-100 border border-primary p-2"
         value.bind="generatedTemplate"
         readonly></textarea>
     </section>
