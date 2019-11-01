@@ -1,0 +1,43 @@
+{
+  "name": "aurelia-html-generator",
+  "version": "1.0.0",
+  "description": "A minimal app demonstrating Aurelia as HTML Template generator",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "webpack --env.production",
+    "build:watch": "npm run build -- -w",
+    "build:dev": "webpack",
+    "build:dev:watch": "npm run build:dev -- -w",
+    "update:aurelia": "npm i @aurelia/webpack-loader@dev aurelia@dev"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Aurelia",
+    "HTML generator",
+    "template generator"
+  ],
+  "author": "bigopon",
+  "license": "MIT",
+  "devDependencies": {
+    "@aurelia/webpack-loader": "^0.5.0-dev.201910290501",
+    "copy-webpack-plugin": "^5.0.4",
+    "css-loader": "^3.2.0",
+    "electron": "^7.0.0",
+    "htmlhint": "^0.11.0",
+    "monaco-editor-webpack-plugin": "^1.7.0",
+    "rimraf": "^3.0.0",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.2.1",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  },
+  "dependencies": {
+    "aurelia": "^0.5.0-dev.201910290501",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "monaco-editor": "^0.18.1"
+  }
+}

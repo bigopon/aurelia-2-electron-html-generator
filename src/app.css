@@ -1,0 +1,11 @@
+html, body {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      data-name="vs/editor/editor.main"
+      href="dist/vs/editor/editor.main.css">
+      
+    <script>
+      ((global) => {
+        const require = global.require || (global.require = {});
+        require.paths = { 'vs': 'dist/vs' };
+      })(this);
+    </script>
+    <script src="dist/vs/loader.js"></script>
+    <script src="dist/vs/editor/editor.main.nls.js"></script>
+    <script src="dist/vs/editor/editor.main.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="renderer.js"></script>
+    <script src="dist/app.bundle.js"></script>
+  </body>
+</html>
