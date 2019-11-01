@@ -77,6 +77,8 @@ export class MonacoEditor {
     switch (this.language) {
       case 'html':
       case 'js':
+      case 'json':
+        // todo: throw?
         return true;
       default:
         return false;

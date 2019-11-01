@@ -43,6 +43,14 @@ export class App {
 
   }
 
+  generateTemplate(): void {
+    const selectedTemplate = this.selectedTemplate;
+    if (!selectedTemplate) {
+      console.log('No selected template');
+      return;
+    }
+  }
+
   onFileListChange(inputEl: HTMLInputElement): void {
     this.addFile(Array.from(inputEl.files));
     inputEl.value = '';
